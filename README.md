@@ -28,5 +28,10 @@ Once you've set up your free Azure account, you are now ready to start getting i
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/638616d1-b477-4dec-a944-7eeb3692b52f)
 
+5. As we continue to scroll, below the username and password section you'll make sure you have selected "Allow Selected Ports" and "RDP (3389).  This will allow all IP addresses to connect to your machine via RDP once it gets configured in the "Networking" secion, which is what we want for this honeynet.  Next, make sure to select the "Confirm" checkbox at the bottom.  Then, select "Next: Disks >".
 
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/cace74e6-aa1b-4a14-bfdc-3895baa8c8db)
+
+
+6. We aren't doing anything with Disks, so click "Next: Networking >".
 
