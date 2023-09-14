@@ -43,3 +43,7 @@ Once you've set up your free Azure account, you are now ready to start getting i
    ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/d9298605-905e-4409-9f52-fabbea765e00)
 
 
+7. Nexxt up, we are going to create our Network Security Group (NSG).  This is essentially a layer 3/layer 4 firewall.  Azure offers its own firewall, which is much more resilient.  The one we are making is a mini-firewall.  The thing is, we are going to configure it to let all traffic in because once again, this is a honeynet.  So, go into the main search bar in Azure portal, and search for "Resource Groups".
+
+
+
