@@ -65,7 +65,28 @@ You'll notice the ping has timed out, meaning nothing is getting through to the 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/5cb20c6c-05bd-4785-a8eb-27147cf46f5a)
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/da75cd4a-2512-45e8-90b1-16883cf6034d)
 
-
-
+12.  After a few moments, you'll have succesfully logged into your honeynet VM.  Once in the VM, go down to the search bar on the task bar at the bottom.  Type "wf.msc", and hit enter.
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/46e1fcee-8a83-49b4-85c5-45ba019c9c75)
+
+This will bring up the Windows Defender Firewall security settings.  Look under the "Public Profile is Active" section, and click the blue text that says "Windows Defender Firewall Properties".
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/3fde2ef0-aa83-429c-abea-a25e607d4776)
+
+In the next window, where it says "Firewall State", click the dropdown box and turn the firewall off.  Go through each tab at the top ("Domain Profile", "Private Profile", "Public Profile"), and again, where it says "Firewall State", toggle it to "off".  Don't worry about doing anything on the "IP Sec Settings" tab.  Click apply, and we're finished with the task.
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/832564c3-84a1-45f8-ae58-0a5a1d9c8e50)
+
+13.  Now, toggle back to your local device.  Open up the Command Prompt.  If you've closed it, go to the search bar on the task bar at the bottom, type "cmd" and press enter.  Now, type "ping [honenet VM's IP address].
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/cf176609-4f17-42fa-84e2-167175aaf884)
+
+Congratulations!  Traffic is now getting through to the honeynet VM!
+
+14.  Next, we need to download Microsoft SQL Server onto the honeynet VM.  For this, we'll use a free trial.  Navigate to Google within the VM, and search for "MSSQL Server 2022 trial".  Click this result:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/584ead2d-9298-4136-bc5d-c45e2288404c)
+
+You'll then be taken to a page where you have to register for a trial.  Fill out the form and continue.
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/968d19d8-0f84-4cdc-9d57-90ceb23c9f9e)
