@@ -50,7 +50,22 @@ Once you've set up your free Azure account, you are now ready to start getting i
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/7455d394-48cb-4579-954d-cff7d9b05fbf)
 
-9. We need to create a high priority rule that allows all traffic to come in.  In the picture above, the sidebar shows "Inbound security rules".  Select that, then click "+ Add" at the top. 
+9. We need to create a high priority rule that allows all traffic to come in.  In the picture above, the sidebar shows "Inbound security rules".  Select that, then click "+ Add" at the top.  Put the rules as the pictures show, and make special note of the priority.  We want the priority to be a lower value than the first rule on the list, so it is administered first.  Make sure the rest of the NSG rule is the same as it is in the photograph, and click "Create".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/c9aa166c-4073-47c0-a7b9-38780d7bed83)
 
+10. Now, we're going to go to the Azure portal search bar and search for "Virtual Machines", select your appropriate honeynet virtual machine, and click "Overview".  Copy your VM's public IP address.  Open up command Prompt, and type "ping [IP Address for VM]" and hit enter.
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/d30c94d7-e2ff-48a4-99d7-b46d1fe37c46)
+
+You'll notice the ping has timed out, meaning nothing is getting through to the virtual machine associated with that IP address.  The reason being is that the virtual machine actually has its own Windows firewall inside, so we are going to have to RDP into the VM and misconfigure the firewall.
+
+11.  To RDP into your newly created Windows honeynet VM, ensure your VM is turned on in the Azure portal.  At the search bar on the top, type in "Virtual Machines".  Select the appropriate VM from the list, and in the next pop up window, select "Start".  A pop up notification should appear at the top right of the Azure portal letting you know that the VM has started.  Now, if you're on Windows device, go down to the search bar on your personal workstation and type "RDP".  Remote Desktop Connection will appear.  To select it, hit enter.  If you're using a Mac, you will need to download Remote Desktop for Windows. Regardless of wether you're using a Mac or Windows to RDP into your Windows VM, you'll need to have the IP address of the VM, the the username, and the password.  On Windows, it will look like this:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/5cb20c6c-05bd-4785-a8eb-27147cf46f5a)
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/da75cd4a-2512-45e8-90b1-16883cf6034d)
+
+
+
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/46e1fcee-8a83-49b4-85c5-45ba019c9c75)
