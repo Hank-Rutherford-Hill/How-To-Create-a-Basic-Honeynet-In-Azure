@@ -91,6 +91,6 @@ You'll then be taken to a page where you have to register for a trial.  Fill out
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/968d19d8-0f84-4cdc-9d57-90ceb23c9f9e)
 
-On the following screen, select the EXE download 64 bit edition of MS SQL.  Open the downloaded file, and allow the app to make changes to your device.  On the next screen, hit "Donwload Media".  Then, hit the blue "Browse" folder button, and just keep it simple and save it on the desktop of the VM; click "Download".
+On the following screen, select the EXE download 64 bit edition of MS SQL.  Open the downloaded file, and allow the app to make changes to your device.  On the next screen, hit "Donwload Media".  Then, hit the blue "Browse" folder button, and just keep it simple and save it on the desktop of the VM.  ```Make sure you're downloading an ISO file``` and click "Download".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/49feb956-1520-4108-9c5f-0b3655a2ac15)
