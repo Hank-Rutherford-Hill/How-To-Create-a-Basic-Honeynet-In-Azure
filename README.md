@@ -83,7 +83,9 @@ In the next window, where it says "Firewall State", click the dropdown box and t
 
 Congratulations!  Traffic is now getting through to the honeynet VM!
 
-14.  Next, we need to download Microsoft SQL Server onto the honeynet VM.  For this, we'll use a free trial.  Navigate to Google within the VM, and search for "MSSQL Server 2022 trial".  Click this result:
+14.  Next, we need to download Microsoft SQL Server onto the honeynet VM.  An SQL server is a lucrative target for attackers due to it's data richness, widespread usage, known vulnerabilities, and many more reasons.  If an attacker executes a port scan and realizes port 1433 is active, it's an indicator that a SQL server is running on the target IP machine.  After that, all it takes is for the attacker to banner grab to verify this, and suddenly a whole new realm is opened for the attacker.  A worthwhile honeynet will include a SQL server running on it.  Luckily we'll be able to use a free trial.
+
+Navigate to Google within the VM, and search for "MSSQL Server 2022 trial".  Click this result:
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/584ead2d-9298-4136-bc5d-c45e2288404c)
 
