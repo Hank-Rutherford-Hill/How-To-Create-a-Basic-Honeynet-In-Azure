@@ -114,4 +114,12 @@ Select "Database Engine", and click next.  Keep going, selecting "Next" through 
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/6c68f202-ef63-4a82-ad94-3328c4440192)
 
-Select "Mixed Mode".  Using "Mixed Mode" allows one to log into the SQL server using either their Windows credentials (which would be the same credentials used to log into the VM that houses the SQL server, or SA (or SysAdmin) credentials that are separate from the Windows credentials. 
+Select "Mixed Mode".  Using "Mixed Mode" allows one to log into the SQL server using either their Windows credentials (which would be the same credentials used to log into the VM that houses the SQL server, or SA (or SysAdmin) credentials that are separate from the Windows credentials.  In the same window, type your log-in password for your SA account.  Below that, click the "Add Current User" button, and click "Next".  ```"Add Current User" button will allow your Windows account to log in to the SQL Server with the Windows credentials.  Selecting the Password will be the password for the SA account, should you so choose to log in via that method (rather than using your Windows account credentials).```
+
+Continue through the setup prompts and hit "Install".  Once it's fininshed installing, you can close out the windows within your VM associated with SQL server, and voila!  You now have a working instance of MS SQL server running on your Windows honeynet VM that you can log into using either your Windows honeynet VM credentials, ```OR``` your SA account (with the SA account password you selected right before you started the completion of the installation).
+
+## Installing MS SQL Server Management Studio
+
+For a basic honeynet, you do not need to install SQL Server Management Studio.  However, I figured that in the future, I may create an additional tutorial here in Github that involves simulating an attack on the SQL server for the purpose of analyzing logs.  We would be using MS SQL Server Management Studio as a part of this.  So, in the event you want to follow along in the future, it would be wise to complete this step.  If not, feel free to skip; you can always come back to this if you change your mind!
+
+
