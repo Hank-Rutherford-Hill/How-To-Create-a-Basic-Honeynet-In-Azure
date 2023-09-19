@@ -101,3 +101,17 @@ You'll then be taken to a page where you have to register for a trial.  Fill out
 On the following screen, select the EXE download 64 bit edition of MS SQL.  Open the downloaded file, and allow the app to make changes to your device.  On the next screen, hit "Donwload Media".  Then, hit the blue "Browse" folder button, and just keep it simple and save it on the desktop of the VM.  ```Make sure you're downloading an ISO file``` and click "Download".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/49feb956-1520-4108-9c5f-0b3655a2ac15)
+
+16.  Once finished downloading, go back to the SQL Server 2022 desktop icon.  Right click, and select "Mount" again.  This time, in the window that opens up, click "Setup" from the list, and click "Yes" to allow this app to make changes to your device.
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/a934e86a-645e-4ffb-bd4b-22159d1cc155)
+
+In the next window that opens, near the left of it, select "Installation".  Now, in the right pane of the window, select "New SQL Server standalone installation...".  In the next window that pops up, select that you want to install the "Evaluation" edition, and click next.  Continue to go through the setup propmpts.  When you arrive at this window:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/4ab4b3f3-cb59-4383-967f-f7129404c203)
+
+Select "Database Engine", and click next.  Keep going, selecting "Next" through the setup.  When you reach this window:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/6c68f202-ef63-4a82-ad94-3328c4440192)
+
+Select "Mixed Mode".  Using "Mixed Mode" allows one to log into the SQL server using either their Windows credentials (which would be the same credentials used to log into the VM that houses the SQL server, or SA (or SysAdmin) credentials that are separate from the Windows credentials. 
