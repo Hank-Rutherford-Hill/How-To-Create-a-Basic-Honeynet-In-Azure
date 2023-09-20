@@ -122,4 +122,30 @@ Continue through the setup prompts and hit "Install".  Once it's fininshed insta
 
 For a basic honeynet, you do not need to install SQL Server Management Studio.  However, I figured that in the future, I may create an additional tutorial here in Github that involves simulating an attack on the SQL server for the purpose of analyzing logs.  We would be using MS SQL Server Management Studio as a part of this.  So, in the event you want to follow along in the future, it would be wise to complete this step.  If not, feel free to skip; you can always come back to this if you change your mind!
 
+1.  Back in your honeynet VM, navigate to Google.  Search for "SSMS download" and select this search result:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/6e60c204-ee44-40f3-9a39-3a450308481c)
+
+In the next page, select the free download link.  Once finished downloading, open the folder, and double click the SSMS Setup file that was just downloaded.  On the next window, click "Install", and "Allow app to make changes".  Once it's installed, it may prompt you to restart your VM.  If that's the case, go ahead and let it restart, then RDP back into your honeynet VM.
+
+2.  Now, we need to make some changes within our VM to be able to have the logs associated with attack attempts on our SQL Server show up if we were to look for them in Event Viewer or using KQL queries in Azure.  Specifically, we are going to provide full permissions for the SQL service account to the Windows registry hive.  The Windows registry is basically an app on the computer where you can make a lot of really granular modifications that affect the way the OS runs.  The reason why it's a good idea to make these changes is so you can actually view and understand/get a feel for what these SQL attack-associated logs are, and where to find them (analyzing logs is a crucial part of many cybersecurity roles).  Without making these changes to the registry, we wouldn't be able to view the SQL associated logs in the Event Viewer.
+
+Let's start by navigating to the search bar on the task bar within our honeynet VM, typing "Registry Editor", and hitting enter.
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/0a35f763-2374-4287-8246-d8e505f58494)
+
+Once we are in Registry Editor, we are going to follow this path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Security
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/bc762973-2ceb-406e-af6c-e2a5ecc2265e)
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/fd94bf11-9c58-46ad-a15f-16b3b0add25d)
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/63af608c-85c7-409a-bacb-e8e5247188ab)
+
+Then, under the "Security" tree, you'll see another "Security" tree.  Right click it, and select "Permissions".  Here's an image so you don't get confused between the two "Security" trees:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/33017f53-8aed-43e4-8ff8-71cbed000b69)
+
+Next, click "Add", and in the "Enter the object names to select" box, type "NETWORK SERVICE".  To the right of the box you just entered "NETWORK SERVICE" into, click the "Check Names" button.  Then, click "OK".  In the window that appears, select the "Full Control" box, and click "OK".
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/cffdfa7e-64fc-4816-94a8-dcafff831e3f)
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/b2aa215c-40cd-499c-b6c1-b86f4095cd91)
 
