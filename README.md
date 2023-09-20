@@ -144,8 +144,15 @@ Then, under the "Security" tree, you'll see another "Security" tree.  Right clic
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/33017f53-8aed-43e4-8ff8-71cbed000b69)
 
-Next, click "Add", and in the "Enter the object names to select" box, type "NETWORK SERVICE".  To the right of the box you just entered "NETWORK SERVICE" into, click the "Check Names" button.  Then, click "OK".  In the window that appears, select the "Full Control" box, and click "OK".
+Next, click "Add", and in the "Enter the object names to select" box, type "NETWORK SERVICE".  To the right of the box you just entered "NETWORK SERVICE" into, click the "Check Names" button.  Then, click "OK".  In the window that appears, select the "Full Control" box, and click "Apply" and then "OK".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/cffdfa7e-64fc-4816-94a8-dcafff831e3f)
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/b2aa215c-40cd-499c-b6c1-b86f4095cd91)
 
+We need to do one more thing to allow the SQL server logs to be collected and viewed in Event Viewer.  Open up the Command Prompt (task bar search bar > type "cmd" > right click "Command Prompt" > Run as Administrator), and copy this :
+
+```auditpol /set /subcategory:"application generated" /success:enable /failure:enable```
+
+and paste it into the Command Prompt, and hit enter.  Remember, this is being executed in the Command Prompt inside the VM, not your local machine.  
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/deb04596-7505-43e1-a185-4aa3ab5abbe9)
