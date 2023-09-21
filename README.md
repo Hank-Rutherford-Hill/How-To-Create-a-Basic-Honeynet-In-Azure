@@ -156,3 +156,22 @@ We need to do one more thing to allow the SQL server logs to be collected and vi
 and paste it into the Command Prompt, and hit enter.  Remember, this is being executed in the Command Prompt inside the VM, not your local machine.  
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/deb04596-7505-43e1-a185-4aa3ab5abbe9)
+
+Congratulations, now your VMs OS is configured to collect logs concerning MS SQL Server, allowing them to be examined in Event Viewer or within Azure!
+
+# Verifying SQL Server Log Generation
+
+Before we skate off into the sunset thinking we've set up everything we need to in our Windows honeynet VM, we should do our due dilligence and verify that we can indeed see that these logs are being generated.  To do this, lets open up SSMS (SQL Server Management Studio), and then log in to our SQL Server.
+
+1.  In your Windows honeynet VM, go to the search bar within the task bar at the bottom.  Type "SSMS", and select the SSMS app (not the SSMS setup .exe file).
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/7ca650d6-f078-498b-a6c9-8b7ec102fefe)
+
+Once SSMS is opened, you'll see a window like this: 
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/c9bd5b13-30fa-43ed-8558-bf11393e58dc)
+
+You can either hit "Connect" and you'll log in via your Windows VM credentials, or you can select "SQL Server Authentication" from the "Authentication" section.  If you choose this option, your login would be "sa" (for system administrator), and your password would be the one that you chose when we were configuring the installation of or SQL Server.  ```You should have written this down in your notepad app ;).```
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/486b8efe-a67b-4b8a-ae6d-41c0a5dd62f1)
+
