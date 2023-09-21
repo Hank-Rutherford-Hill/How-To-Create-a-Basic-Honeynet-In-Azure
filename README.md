@@ -175,3 +175,35 @@ You can either hit "Connect" and you'll log in via your Windows VM credentials, 
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/486b8efe-a67b-4b8a-ae6d-41c0a5dd62f1)
 
+2.  Once connected to your SQL server (by windows authentication or sa authentication, doesn't matter), right click on your server (which should be at the very top of the "Object Explorer" on the left side of SSMS) and select "Properties".
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/06841f1e-0572-4faa-9ef9-a357ecfd9a3e)
+
+3.  Select "Security" from the menu on the left.  Under the "Login Auditing" section, choose "Both failed and successful logins".  Select "OK".
+
+In conjunction with the Windows Registry changes we made a few steps prior, this will make sure both failed and successful log in attempts are ported to the Event Viewer (and thus Azure).
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/6ae12168-e22e-4729-aead-5b98a87cae40)
+
+4. After making a change like this, it's a good idea to restart the SQL server.  Right click the server under the Object Explorer section, and select restart.
+
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/27098401-6d07-4781-a042-caa2a820bb05)
+
+5.  Once we've restarted the SQL server, right click your server under the Object Explorer and select disconnect.  This will log us out of the server.
+
+6.  Under the Object Expolorer, you'll see "Connect" with a plug next to it.  Click the plug, and a login window will come up.
+
+7.  Select SQL Server Authentication from the dropdown under the "Authentication" section, put "sa" in the login box, and type an ```INCORRECT``` password.  Continue to fail a login at least 3-4 more times.  We are about to check in the Event Viewer that both failed and successful logins are being logged.
+
+8.  Finally, login successfully.
+
+9.  Now, disconnect from your SQL server, and exit SSMS.
+
+10.  Open Event Viewer by typing "Event Viewer" into the search bar on the task bar at the bottom of your VM.
+
+11.  Looking on the left pane under the "Windows Logs" tree, select "Application".  Scroll through the logs, looking for Event ID 18453 (successful login) and Event ID 18456 (Failed Login).
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/fcf87c0a-882e-4fa1-87bd-a56d67a7746b)
+
+If after failing several login attempts, you do not see any Event ID 18456 for failed logins, or any Event ID 18453 for successful logins, go back and repeat the steps in this section.  If you repeat the steps in this section, and still do not see the appropriate Event IDs in Event Viewer, you may have made a mistake when you made changes to the Windows Registry, and you would have to go back and repeat that section, followed by this section.  However, it's not totally necessary if all you want to do is create a super basic honeynet.  If you think you may want to follow along with any future tutorials I may release here on GitHub, it would behoove you to get this situation worked out.
