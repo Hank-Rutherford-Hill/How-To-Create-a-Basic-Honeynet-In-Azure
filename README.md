@@ -209,3 +209,15 @@ In conjunction with the Windows Registry changes we made a few steps prior, this
 If after failing several login attempts, you do not see any Event ID 18456 for failed logins, or any Event ID 18453 for successful logins, go back and repeat the steps in this section.  If you repeat the steps in this section, and still do not see the appropriate Event IDs in Event Viewer, you may have made a mistake when you made changes to the Windows Registry, and you would have to go back and repeat that section, followed by this section.  However, it's not totally necessary if all you want to do is create a super basic honeynet.  If you think you may want to follow along with any future tutorials I may release here on GitHub, it would behoove you to get this situation worked out.
 
 # Creating A Linux VM
+
+We now need to create a Linux honeynet VM to add to our honeynet and NSG.  It's essentially the same procedure as when we created our Windows honeynet VM, but I will run through it anyway since there are a few important things I want to make sure are not overlooked.
+
+1.  In the Azure portal, go to the search bar and type "Virtual Machines".  Select it, and on the next screen, click on the "+ Create" button on the top left.  From that dropdown, click "Azure Virtual Machine".
+
+2.  On the following page, start filling out the form.  ```Make sure you put the Linux honeynet VM in THE SAME RESOURCE GROUP and SAME REGION as your Windows honeynet VM!```
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/1278f46c-ff2a-4951-92f0-ff8678de6cd7)
+
+If you didn't record this information down in the notepad app like you were supposed to, you can just check within Azure.  Just open up a new tab on your browser, go to the Azure portal, and search for "Virtual Machines".  Select the Windows honeynet VM from the list, and on the next page, under the "Essentials" pane, you will see the resource group and region that VM is in.
+
+3.  For the image select "Ubuntu Server 20.04 LTS x64 Gen2
