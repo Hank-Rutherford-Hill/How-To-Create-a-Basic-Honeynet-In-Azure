@@ -220,4 +220,28 @@ We now need to create a Linux honeynet VM to add to our honeynet and NSG.  It's 
 
 If you didn't record this information down in the notepad app like you were supposed to, you can just check within Azure.  Just open up a new tab on your browser, go to the Azure portal, and search for "Virtual Machines".  Select the Windows honeynet VM from the list, and on the next page, under the "Essentials" pane, you will see the resource group and region that VM is in.
 
-3.  For the image select "Ubuntu Server 20.04 LTS x64 Gen2
+3.  For the image select "Ubuntu Server 20.04 LTS x64 Gen2", and for size, select an option with one vCPU.
+
+If you recall, I stated earlier that if you are using the free trial version of Azure, you are only allotted four vCPUs.  We have already used two of them for our Windows honeynet VM, and with the Linux honeynet VM, we'll be utilizing 3/4 vCPUs.  We want to keep one in reserve because there's a high likelyhood that at a later date, I will be doing another tutorial that involves creating an "attack" VM, and simulating certain attacks on the honeynet for the purpose of reviewing logs (and maybe even simulating responses to attacks in Sentinel).  If you think that you might want to follow along with this possible future endeavor, select one vCPU for your Linux honeynet VM, and keep one in reserve.
+
+4.  Under "Authentication Type", select "Password".  Now, create a username for your Linux honeynet VM, and a password.  Remember, enter these credentials (as well as the resource group and region) into your notepad app.
+
+5.  Select "Next: Disks", then "Next: Networking".  Now, under "Networking", ```MAKE SURE you choose the same vNet for this Linux honeynet VM as you did for the Windows honeynet VM```.  Remember, if you did not record this in the notepad app, you can always view the details of a particular resource you created in the Azure portal.  To do this, it would be helpful to open a new tab on the desktop.  Navigate to the Azure portal, and in the search bar, type "virtual machines".  Select the Windows honeynet VM, and under the "Essentials" pane, you will see a section labeled "Virtual Network/Subnet".  Under that is the vNet which your Windows honeynet VM lies.  That'll be the same vNet you choose from the dropdown in the "Networking" section as you are creating your Linux honeynet VM.
+
+6.  Finally, click "Review + Create", then "Create".  Wait just a few moments, and you'll have completed the deployment of both a Windows AND Linux honeynet VM!
+
+## Misconfiguring the Linux Honeynet VM's NSG
+
+Congratulations on making it this far!  We are almost finished up with our honeynet.  Just a few more tasks, and we are ready to let the world try to break into our systems (although I can guarentee you that the world has already been trying on the Windows VM atleast)!
+
+1.  In the Azure portal, navigate to the seaerch bar.  Type in "virtual machines", and click on the Linux honeynet VM you created.  Then, click "Networking".
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/7d1f67d2-78d2-4cc7-87ed-4f043a4afe3f)
+
+```WARNING: about to go on a tangent here...``` Before we move on to step two, I want to just iterate that there are various ways you can access the features we need to in Azure.  For instance, to get to our Network Security Group for the Linux honeynet VM, we don't necessarily have to search in the Azure portal for "Virtual Machines".  We can simply search for "nsg", and a list will show all of the network security groups associated with our subscription.
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/ff4c3dac-558e-42e2-880d-1156037206c1)
+
+Ok, now "back to our regularly scheduled programming"!
+
+2.  Whichever way you choose to do it, get to your Linux honeynet VM's NSG.
