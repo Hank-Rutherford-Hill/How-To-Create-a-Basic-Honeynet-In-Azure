@@ -287,6 +287,10 @@ Keep our command prompt open because now we are going to SSH into our Linux hone
 
 If you have a bash shell (the green text at the bottom of the picture above) you're now controlling your Linux honeynet VM via your local machine.  If an attacker has your username, IP address, and can crack your password, they can infiltrate your system!  Congratulations!
 
+## Conclusion and Looking Forward
 
+Be proud of yourself.  You followed along on this journey (hopefully with few hiccups) of a detailed account of how to create a honeynet.  From the genesis of this tutorial, you learned a thing or two about Azure, basic IT, and cybersecurity.  It is my hope that you continue to check back with me here on GitHub or via [my Linkedin](www.linkedin.com/in/matthewhannah1211) so you may follow along with me as I build out my portfolio.  I intend to expound on some of the topics we learned here, and branch out into some new territory as well.  Definitely check back sooner than later if you want to follow along with me as I show you how to create an "attack" VM and propagate attacks on the honeynet!  We'll get deeper in the trenches, view some logs, and hope we don't stress ourselves out too much in the process.  
+
+I sincerely thank you if you've followed along with me on this.  Until next time!
 
 
