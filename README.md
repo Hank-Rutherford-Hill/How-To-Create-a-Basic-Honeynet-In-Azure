@@ -273,3 +273,20 @@ Let's verify that our newly dismantled Linux honeynet VM NSG is indeed botched a
 
 If you see that your ping is getting a reply, you're good!  Defenses are down on the Linux honeynet VM, and it is indeed officially part of our honeynet!  If you did not get a successful reply, you've likely made a mistake in the "Misconfiguring the Linux Honeynet VM NSG" section above.  Go back to the Linux honeynet VM's NSG, and make sure you deleted the inbound SSH rule.  If it's not there, check to see if the rule you created in it's place matches all the parameters I demonstrated in the photograph in that section.  Pay close attention as you do this.
 
+## SSH into the Linux Honeynet VM
+
+Keep our command prompt open because now we are going to SSH into our Linux honeynet VM!  Linux machines don't always have a GUI (Graphical User Interface) like Windows machines do, so we are going to have to use the command prompt or Powershell to remotely login to the Linux honeynet VM.
+
+1.  First, make sure we have the public IP address of the Linux honeynet VM copied.  You should know how to get the public IP address for this machine by now!
+
+2.  Now, open command prompt (or Powershell--same method as you'd find command prompt--task bar/search bar > type "Powershell" > hit enter).  Type "ssh [Linux honeynet VM's username]@[Linux honeynet VM's public IP address]" and hit enter.  If it's your first time logging into this particular machine via ssh on your local machine, it's going to give you some dialogue and ask you to type "yes/no".  Type yes.  This is a safety mechanism in place since your local machine hasn't encountered the remote server (in this case, the Linux honeynet VM) before, and is asking you to verify that you want to connect.  I would post a picture of exactly what this looks like, but I've already logged into my Linux honeynet VM.  Anyway, you're about to see yourself!
+
+3.  Next, it's going to ask you for the Linux honeynet VM's password.  ```NOTE: when you type this password into the command prompt or Powershell, IT IS NOT VISIBLE.  Just type it in, try not to make any mistakes, and hit enter.```  If it's done successfully, you will see this:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/523e81bc-5609-4266-ab11-7f099143a9f4)
+
+If you have a bash shell (the green text at the bottom of the picture above) you're now controlling your Linux honeynet VM via your local machine.  If an attacker has your username, IP address, and can crack your password, they can infiltrate your system!  Congratulations!
+
+
+
+
