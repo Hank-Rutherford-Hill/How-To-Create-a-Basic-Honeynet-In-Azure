@@ -36,18 +36,18 @@ Once you've set up your free Azure account, you are now ready to dive into the "
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/638616d1-b477-4dec-a944-7eeb3692b52f)
 
-5. As we continue to scroll, below the username and password section you'll make sure you have selected "Allow Selected Ports" and "RDP (3389).  This will allow all IP addresses to connect to your machine via RDP once it gets configured in the "Networking" secion, which is what we want for this honeynet.  Next, make sure to select the "Confirm" checkbox at the bottom.  Then, select "Next: Disks >".
+5. As we continue to scroll, below the username and password section you'll make sure you have selected "Allow Selected Ports" and "RDP (3389).  This will allow all IP addresses to connect to your machine via RDP once it gets configured in the "Networking" section, which is what we want for this honeynet.  Next, make sure to select the "Confirm" checkbox at the bottom.  Then, select "Next: Disks >".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/cace74e6-aa1b-4a14-bfdc-3895baa8c8db)
 
 
-6. We aren't doing anything with the "Disks" section, so click "Next: Networking >".  Under "Networking", we are going to have to create a VNet (virtual network) for our virtual machine to exist on.  So, click "Create New" under the "Virtual Network" dropdown box.  In the following window, name your Vnet, and hit "Ok".  Then, hit "Review + Create", then "Create".
+6. We aren't doing anything with the "Disks" section, so click "Next: Networking >".  Under "Networking", we are going to have to create a vNet (virtual network) for our virtual machine to exist on.  So, click "Create New" under the "Virtual Network" dropdown box.  In the following window, name your Vnet, and hit "Ok".  Then, hit "Review + Create", then "Create".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/d9298605-905e-4409-9f52-fabbea765e00)
 
 ## Misconfiguring the Windows Honeynet VM's NSG
 
-1. Nexxt up, we are going to create our Network Security Group (NSG).  This is essentially a layer 3/layer 4 firewall.  Azure offers its own firewall, which is much more resilient.  The one we are making is a mini-firewall.  The thing is, we are going to configure it to let all traffic in because once again, this is a honeynet.  So, go into the main search bar in Azure portal, and search for "Resource Groups".  Click your appropriate resource group, and it'll open up a window with a list of resources.  Among them, you will see your NSG.  By the way, you're able to get to your NSG by searching for it directly into the search box.  You dont necessarily have to go to "Resource Groups" first, in order to find your NSG.  Anyway, click on the NSG and we will get started.
+1. Next up, we are going to create our Network Security Group (NSG).  This is essentially a layer 3/layer 4 firewall.  Azure offers its own firewall, which is much more resilient.  The one we are making is a mini-firewall.  The thing is, we are going to configure it to let all traffic in because once again, this is a honeynet.  So, go into the main search bar in Azure portal, and search for "Resource Groups".  Click your appropriate resource group, and it'll open up a window with a list of resources.  Among them, you will see your NSG.  By the way, you're able to get to your NSG by searching for it directly into the search box.  You dont necessarily have to go to "Resource Groups" first, in order to find your NSG.  Click on the NSG and we will get started.
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/7455d394-48cb-4579-954d-cff7d9b05fbf)
 
@@ -55,7 +55,7 @@ Once you've set up your free Azure account, you are now ready to dive into the "
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/c9aa166c-4073-47c0-a7b9-38780d7bed83)
 
-3. Now, we're going to go to the Azure portal search bar and search for "Virtual Machines", select your appropriate honeynet virtual machine, and click "Overview".  Copy your VM's public IP address.  Open up command Prompt, and type "ping [IP Address for VM]" and hit enter.
+3. Now, we're going to go to the Azure portal search bar and search for "Virtual Machines", select your appropriate honeynet virtual machine, and click "Overview".  Copy your VM's public IP address.  Open up command prompt, and type "ping [IP Address for VM]" and hit enter.
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/d30c94d7-e2ff-48a4-99d7-b46d1fe37c46)
 
@@ -63,7 +63,7 @@ You'll notice the ping has timed out, meaning nothing is getting through to the 
 
 ## Disabling the Windows Honeynet VM's Firewall
 
-1.  To RDP into your newly created Windows honeynet VM, ensure your VM is turned on in the Azure portal.  At the search bar on the top, type in "Virtual Machines".  Select the appropriate VM from the list, and in the next pop up window, select "Start".  A pop up notification should appear at the top right of the Azure portal letting you know that the VM has started.  Now, if you're on Windows device, go down to the search bar on your personal workstation and type "RDP".  Remote Desktop Connection will appear.  To select it, hit enter.  If you're using a Mac, you will need to download Remote Desktop for Windows. Regardless of wether you're using a Mac or Windows to RDP into your Windows VM, you'll need to have the IP address of the VM, the the username, and the password.  On Windows, it will look like this:
+1.  To RDP into your newly created Windows honeynet VM, ensure your VM is turned on in the Azure portal.  At the search bar on the top, type in "Virtual Machines".  Select the appropriate VM from the list, and in the next pop up window, select "Start".  A pop up notification should appear at the top right of the Azure portal letting you know that the VM has started.  Now, if you're on Windows device, go down to the search bar on your personal workstation and type "RDP".  Remote Desktop Connection will appear.  To select it, hit enter.  If you're using a Mac, you will need to download Remote Desktop for Windows. Regardless of whether you're using a Mac or Windows to RDP into your Windows VM, you'll need to have the IP address of the VM, the username, and the password.  On Windows, it will look like this:
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/5cb20c6c-05bd-4785-a8eb-27147cf46f5a)
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/da75cd4a-2512-45e8-90b1-16883cf6034d)
@@ -88,7 +88,7 @@ Congratulations!  Traffic is now getting through to the honeynet VM!
 
 ## Downloading and Installing A SQL Server on Windows Honeynet VM
 
-1.  Next, we need to download Microsoft SQL Server onto the honeynet VM.  An SQL server is a lucrative target for attackers due to it's data richness, widespread usage, known vulnerabilities, and many more reasons.  If an attacker executes a port scan and realizes port 1433 is active, it's an indicator that a SQL server is running on the target IP machine.  After that, all it takes is for the attacker to banner grab to verify this, and suddenly a whole new realm is opened for the attacker.  A worthwhile honeynet will include a SQL server running on it.  Luckily we'll be able to use a free trial.
+1.  Next, we need to download Microsoft SQL Server onto the honeynet VM.  An SQL server is a lucrative target for attackers due to its data richness, widespread usage, known vulnerabilities, among other reasons.  If an attacker executes a port scan and discovers port 1433 is active, it's an indicator that a SQL server is running on the target IP machine.  After that, all it takes is for the attacker to banner grab to verify this, and suddenly a whole new realm is opened for the attacker.  A worthwhile honeynet will include a SQL server running on it.  Luckily we'll be able to use a free trial.
 
 Navigate to Google within the VM, and search for "MSSQL Server 2022 trial".  Click this result:
 
@@ -103,7 +103,7 @@ You'll then be taken to a page where you have to register for a trial.  Fill out
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/1967b35e-265f-49e5-ba7a-42005922a82a)
 
 
-On the following screen, select the EXE download 64 bit edition of MS SQL.  Open the downloaded file, and allow the app to make changes to your device.  On the next screen, hit "Donwload Media".  Then, hit the blue "Browse" folder button, and just keep it simple and save it on the desktop of the VM.  ```Make sure you're downloading an ISO file``` and click "Download".
+On the following screen, select the EXE download 64 bit edition of MS SQL.  Open the downloaded file, and allow the app to make changes to your device.  On the next screen, hit "Download Media".  Then, hit the blue "Browse" folder button, and just keep it simple and save it on the desktop of the VM.  ```Make sure you're downloading an ISO file``` and click "Download".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/49feb956-1520-4108-9c5f-0b3655a2ac15)
 
@@ -111,7 +111,7 @@ On the following screen, select the EXE download 64 bit edition of MS SQL.  Open
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/a934e86a-645e-4ffb-bd4b-22159d1cc155)
 
-In the next window that opens, near the left of it, select "Installation".  Now, in the right pane of the window, select "New SQL Server standalone installation...".  In the next window that pops up, select that you want to install the "Evaluation" edition, and click next.  Continue to go through the setup propmpts.  When you arrive at this window:
+In the next window that opens, near the left of it, select "Installation".  Now, in the right pane of the window, select "New SQL Server standalone installation...".  In the next window that pops up, select that you want to install the "Evaluation" edition, and click next.  Continue to go through the setup prompts.  When you arrive at this window:
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/4ab4b3f3-cb59-4383-967f-f7129404c203)
 
@@ -119,9 +119,9 @@ Select "Database Engine", and click next.  Keep going, selecting "Next" through 
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/6c68f202-ef63-4a82-ad94-3328c4440192)
 
-Select "Mixed Mode".  Using "Mixed Mode" allows one to log into the SQL server using either their Windows credentials (which would be the same credentials used to log into the VM that houses the SQL server, or SA (or SysAdmin) credentials that are separate from the Windows credentials.  In the same window, type your log-in password for your SA account.  Below that, click the "Add Current User" button, and click "Next".  ```"Add Current User" button will allow your Windows account to log in to the SQL Server with the Windows credentials.  Selecting the Password will be the password for the SA account, should you so choose to log in via that method (rather than using your Windows account credentials).```
+Select "Mixed Mode".  Using "Mixed Mode" allows one to log into the SQL server using either their Windows credentials (which would be the same credentials used to log into the VM that houses the SQL server, or SA (or SysAdmin) credentials that are separate from the Windows credentials.  In the same window, type your login password for your SA account.  Below that, click the "Add Current User" button, and click "Next".  ```"Add Current User" button will allow your Windows account to log in to the SQL Server with the Windows credentials.  Selecting the Password will be the password for the SA account, should you so choose to log in via that method (rather than using your Windows account credentials).```
 
-Continue through the setup prompts and hit "Install".  Once it's fininshed installing, you can close out the windows within your VM associated with SQL server, and voila!  You now have a working instance of MS SQL server running on your Windows honeynet VM that you can log into using either your Windows honeynet VM credentials, ```OR``` your SA account (with the SA account password you selected right before you started the completion of the installation).
+Continue through the setup prompts and hit "Install".  Once it's finished installing, you can close out the windows within your VM associated with SQL server, and voila!  You now have a working instance of MS SQL server running on your Windows honeynet VM that you can log into using either your Windows honeynet VM credentials, ```OR``` your SA account (with the SA account password you selected right before you started the completion of the installation).
 
 ## Installing MS SQL Server Management Studio
 
@@ -170,7 +170,7 @@ Congratulations, now your VMs OS is configured to collect logs concerning MS SQL
 
 ## Verifying SQL Server Log Generation
 
-Before we skate off into the sunset thinking we've set up everything we need to in our Windows honeynet VM, we should do our due dilligence and verify that we can indeed see that these logs are being generated.  To do this, lets open up SSMS (SQL Server Management Studio), and then log in to our SQL Server.
+Before we skate off into the sunset thinking we've set up everything we need to in our Windows honeynet VM, we should do our due diligence and verify that we can indeed see that these logs are being generated.  To do this, let's open up SSMS (SQL Server Management Studio), and then log in to our SQL Server.
 
 1.  In your Windows honeynet VM, go to the search bar within the task bar at the bottom.  Type "SSMS", and select the SSMS app (not the SSMS setup .exe file).
 
@@ -180,7 +180,7 @@ Once SSMS is opened, you'll see a window like this:
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/c9bd5b13-30fa-43ed-8558-bf11393e58dc)
 
-You can either hit "Connect" and you'll log in via your Windows VM credentials, or you can select "SQL Server Authentication" from the "Authentication" section.  If you choose this option, your login would be "sa" (for system administrator), and your password would be the one that you chose when we were configuring the installation of or SQL Server.  ```You should have written this down in your notepad app ;).```
+You can either hit "Connect" and you'll log in via your Windows VM credentials, or you can select "SQL Server Authentication" from the "Authentication" section.  If you choose this option, your login would be "sa" (for system administrator), and your password would be the one that you chose when we were configuring the installation of our SQL Server.  ```You should have written this down in your notepad app ;).```
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/486b8efe-a67b-4b8a-ae6d-41c0a5dd62f1)
 
@@ -190,7 +190,7 @@ You can either hit "Connect" and you'll log in via your Windows VM credentials, 
 
 3.  Select "Security" from the menu on the left.  Under the "Login Auditing" section, choose "Both failed and successful logins".  Select "OK".
 
-In conjunction with the Windows Registry changes we made a few steps prior, this will make sure both failed and successful log in attempts are ported to the Event Viewer (and thus Azure).
+In conjunction with the Windows Registry changes we made a few steps prior, this will make sure both failed and successful login attempts are ported to the Event Viewer (and thus Azure).
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/6ae12168-e22e-4729-aead-5b98a87cae40)
 
@@ -201,7 +201,7 @@ In conjunction with the Windows Registry changes we made a few steps prior, this
 
 5.  Once we've restarted the SQL server, right click your server under the Object Explorer and select disconnect.  This will log us out of the server.
 
-6.  Under the Object Expolorer, you'll see "Connect" with a plug next to it.  Click the plug, and a login window will come up.
+6.  Under the Object Explorer, you'll see "Connect" with a plug next to it.  Click the plug, and a login window will come up.
 
 7.  Select SQL Server Authentication from the dropdown under the "Authentication" section, put "sa" in the login box, and type an ```INCORRECT``` password.  Continue to fail a login at least 3-4 more times.  We are about to check in the Event Viewer that both failed and successful logins are being logged.
 
@@ -261,7 +261,7 @@ Ok, now "back to our regularly scheduled programming"!
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/1765b998-227d-4d07-96d0-8fab94bb555c)
 
-That is, ANY source, ANY (denoted by an asterisk *) source port ranges, ANY destination, CUSTOM service, ANY protocol, put the priority to a number that is lowest in value compared to any of the other inbound security rules (remember, the lower the value of the rule priority, the sooner the associated rule will be adhered to).  And just for the sake of your own sanity, change the rule name to something that when you see it, you'll know that it's something edited or created to be a part of this honeynet.  I chose "DANGER", but you could choose monkey, Robitussin, or whatever arbitrary thing you can think of.  Have fun with it if you want, I don't care!
+That is, ANY source, ANY (denoted by an asterisk *) source port ranges, ANY destination, CUSTOM service, ANY protocol, put the priority to a number that is lowest in value compared to any of the other inbound security rules (remember, the lower the value of the rule priority, the sooner the associated rule will be adhered to).  And just for the sake of your own sanity, change the rule name to something that when you see it, you'll know that it's something edited or created to be a part of this honeynet.  I chose "DANGER", but you could choose "monkey", "Robitussin", or whatever arbitrary thing you can think of.  Have fun with it if you want, I don't care!
 
 4.  Now, hit "Add".  Our rule is now added, so long as you see it show up as mine did in this screenshot below!
 
@@ -273,22 +273,22 @@ Let's verify that our newly dismantled Linux honeynet VM NSG is indeed botched a
 
 1.  On your local machine, go to the task bar/search bar, type "cmd" and hit enter.
 
-2.  Now, switch windows, go to your browser and into Azure.  In the search bar in Azure, type "Virtual Machines".  Select the Linux honeynet VM, and under the "Essentials" section, find the public IP address and copy it.
+2.  Now, switch windows.  Go to your browser and into Azure.  In the search bar in Azure, type "Virtual Machines".  Select the Linux honeynet VM, and under the "Essentials" section, find the public IP address and copy it.
 
 3.  Navigate back over to the cmd prompt, and type "ping [Linux honeynet VM's public IP address]", like I've demonstrated in the image below:
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/e4ece086-521f-401f-b640-66f692870bae)
 
 
-If you see that your ping is getting a reply, you're good!  Defenses are down on the Linux honeynet VM, and it is indeed officially part of our honeynet!  If you did not get a successful reply, you've likely made a mistake in the "Misconfiguring the Linux Honeynet VM NSG" section above.  Go back to the Linux honeynet VM's NSG, and make sure you deleted the inbound SSH rule.  If it's not there, check to see if the rule you created in it's place matches all the parameters I demonstrated in the photograph in that section.  Pay close attention as you do this.
+If you see that your ping is getting a reply, you're good!  Defenses are down on the Linux honeynet VM, and it is indeed officially part of our honeynet.  If you did not get a successful reply, you've likely made a mistake in the "Misconfiguring the Linux Honeynet VM NSG" section above.  Go back to the Linux honeynet VM's NSG, and make sure you deleted the inbound SSH rule.  If it's not there, check to see if the rule you created in its place matches all the parameters I demonstrated in the photograph in that section.  Pay close attention as you do this.
 
 ## SSH into the Linux Honeynet VM
 
-Keep our command prompt open because now we are going to SSH into our Linux honeynet VM!  Linux machines don't always have a GUI (Graphical User Interface) like Windows machines do, so we are going to have to use the command prompt or PowerShell to remotely login to the Linux honeynet VM.
+Keep our command prompt open because now we are going to SSH into our Linux honeynet VM!  Linux machines don't always have a GUI (Graphical User Interface) like Windows machines do, so we have to use the command prompt or PowerShell to remotely login to the Linux honeynet VM.
 
 1.  First, make sure we have the public IP address of the Linux honeynet VM copied.  You should know how to get the public IP address for this machine by now!
 
-2.  Now, open command prompt (or Powershell--same method as you'd find command prompt--task bar/search bar > type "Powershell" > hit enter).  Type "ssh [Linux honeynet VM's username]@[Linux honeynet VM's public IP address]" and hit enter.  If it's your first time logging into this particular machine via ssh on your local machine, it's going to give you some dialogue and ask you to type "yes/no".  Type yes.  This is a safety mechanism in place since your local machine hasn't encountered the remote server (in this case, the Linux honeynet VM) before, and is asking you to verify that you want to connect.  I would post a picture of exactly what this looks like, but I've already logged into my Linux honeynet VM.  Anyway, you're about to see yourself!
+2.  Now, open command prompt (or Powershell--same method as you'd find command prompt--task bar/search bar > type "Powershell" > hit enter).  Type "ssh [Linux honeynet VM's username]@[Linux honeynet VM's public IP address]" and hit enter.  If it's your first time logging into this particular machine via ssh on your local machine, it's going to give you some dialogue and ask you to type "yes/no".  Type "yes".  This is a safety mechanism in place since your local machine hasn't encountered the remote server (in this case, the Linux honeynet VM) before, and is asking you to verify that you want to connect.  I would post a picture of exactly what this looks like, but I've already logged into my Linux honeynet VM.  Anyway, you're about to see yourself!
 
 3.  Next, it's going to ask you for the Linux honeynet VM's password.  ```NOTE: when you type this password into the command prompt or Powershell, IT IS NOT VISIBLE.  Just type it in, try not to make any mistakes, and hit enter.```  If it's done successfully, you will see this:
 
