@@ -1,4 +1,4 @@
-# How To Create a Basic Honeynet In Azure
+# How To Create a Basic Honeynet In Azure (DETAILED)
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/412575b5-39c9-4d4a-a220-d3486f67cd4c)
 
