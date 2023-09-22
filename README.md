@@ -268,7 +268,8 @@ Let's verify that our newly dismantled Linux honeynet VM NSG is indeed botched a
 
 3.  Navigate back over to the cmd prompt, and type "ping [Linux honeynet VM's public IP address]", like I've demonstrated in the image below:
 
- [image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/c7acfe74-1877-49e8-830f-bdfc40897b8b)
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/e4ece086-521f-401f-b640-66f692870bae)
+
 
 If you see that your ping is getting a reply, you're good!  Defenses are down on the Linux honeynet VM, and it is indeed officially part of our honeynet!  If you did not get a successful reply, you've likely made a mistake in the "Misconfiguring the Linux Honeynet VM NSG" section above.  Go back to the Linux honeynet VM's NSG, and make sure you deleted the inbound SSH rule.  If it's not there, check to see if the rule you created in it's place matches all the parameters I demonstrated in the photograph in that section.  Pay close attention as you do this.
 
