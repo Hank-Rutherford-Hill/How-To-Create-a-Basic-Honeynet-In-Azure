@@ -244,4 +244,31 @@ Congratulations on making it this far!  We are almost finished up with our honey
 
 Ok, now "back to our regularly scheduled programming"!
 
-2.  Whichever way you choose to do it, get to your Linux honeynet VM's NSG.
+2.  Whichever way you choose to do it, get to your Linux honeynet VM's NSG.  The first thing we want to do is delete the rule that was automatically created.  In the photo below, it's rule 300 (the inbound SSH rule).  Click the trash can on the right and delete it.
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/365c4237-62bd-4bd2-879e-572aedfd61ca)
+
+3.  Now, lets add our own inbound security rule.  Under settings on the left pane, select "Inbound security rules".  Click "Add +" at the top, and fill out the form on the right to match the picture below:
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/1765b998-227d-4d07-96d0-8fab94bb555c)
+
+That is, ANY source, ANY (denoted by an asterisk *) source port ranges, ANY destination, CUSTOM service, ANY protocol, put the priority to a number that is lowest in value compared to any of the other inbound security rules (remember, the lower the value of the rule priority, the sooner the associated rule will be adhered to).  And just for the sake of your own sanity, change the rule name to something that when you see it, you'll know that it's something edited or created to be a part of this honeynet.  I chose "DANGER", but you could choose monkey, Robitussin, or whatever arbitrary thing you can think of.  Have fun with it if you want, I don't care!
+
+4.  Now, hit "Add".  Our rule is now added, so long as you see it show up as mine did in this screenshot below!
+
+![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/ad809dae-d517-42a9-90d6-6871e86bd355)
+
+## Pinging the Linux Honeynet VM
+
+Let's verify that our newly dismantled Linux honeynet VM NSG is indeed botched and insecure by pinging the public IP address of our Linux honeynet VM.
+
+1.  On your local machine, go to the task bar/search bar, type "cmd" and hit enter.
+
+2.  Now, switch windows, go to your browser and into Azure.  In the search bar in Azure, type "Virtual Machines".  Select the Linux honeynet VM, and under the "Essentials" section, find the public IP address and copy it.
+
+3.  Navigate back over to the cmd prompt, and type "ping [Linux honeynet VM's public IP address]", like I've demonstrated in the image below:
+
+ [image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/c7acfe74-1877-49e8-830f-bdfc40897b8b)
+
+If you see that your ping is getting a reply, you're good!  Defenses are down on the Linux honeynet VM, and it is indeed officially part of our honeynet!  If you did not get a successful reply, you've likely made a mistake in the "Misconfiguring the Linux Honeynet VM NSG" section above.  Go back to the Linux honeynet VM's NSG, and make sure you deleted the inbound SSH rule.  If it's not there, check to see if the rule you created in it's place matches all the parameters I demonstrated in the photograph in that section.  Pay close attention as you do this.
+
