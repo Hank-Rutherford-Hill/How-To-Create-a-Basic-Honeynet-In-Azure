@@ -16,7 +16,7 @@ Lastly, you will need a credit card to open the account.  You will not be charge
 
 ```PLEASE use a STRONG PASSWORD for your Azure account, and enable MFA.  The virtual machines in our honeynet don't need to have a strong password (afterall, it's a honeynet), but our Azure account IS NOT part of the honeynet!  So secure your account!```
 
-## Creating Our First Resources
+## Creating the Windows Honeynet VM
 
 Once you've set up your free Azure account, you are now ready to dive into the "nitty-gritty".  We'll begin by creating our first resource, a Windows virtual machine.  Obviously, you'll want to make sure you're logged in to the [Azure Portal](https://portal.azure.com).  
 
@@ -131,30 +131,34 @@ For a basic honeynet, you do not need to install SQL Server Management Studio.  
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/6e60c204-ee44-40f3-9a39-3a450308481c)
 
-In the next page, select the free download link.  Once finished downloading, open the folder, and double click the SSMS Setup file that was just downloaded.  On the next window, click "Install", and "Allow app to make changes".  Once it's installed, it may prompt you to restart your VM.  If that's the case, go ahead and let it restart, then RDP back into your honeynet VM.
+2.  On the next page, select the free download link.  Once finished downloading, open the folder, and double click the SSMS Setup file that was just downloaded.
 
-2.  Now, we need to make some changes within our VM to be able to have the logs associated with attack attempts on our SQL Server show up if we were to look for them in Event Viewer or using KQL queries in Azure.  Specifically, we are going to provide full permissions for the SQL service account to the Windows registry hive.  The Windows registry is basically an app on the computer where you can make a lot of really granular modifications that affect the way the OS runs.  The reason why it's a good idea to make these changes is so you can actually view and understand/get a feel for what these SQL attack-associated logs are, and where to find them (analyzing logs is a crucial part of many cybersecurity roles).  Without making these changes to the registry, we wouldn't be able to view the SQL associated logs in the Event Viewer.
+3.  On the next window, click "Install", and "Allow app to make changes".  Once it's installed, it may prompt you to restart your VM.  If that's the case, go ahead and let it restart, then RDP back into your honeynet VM.
 
-Let's start by navigating to the search bar on the task bar within our honeynet VM, typing "Registry Editor", and hitting enter.
+## Enabling SQL Server Log Generation via Windows Registry
+
+Now, we need to make some changes within our VM to be able to have the logs associated with attack attempts on our SQL Server show up if we were to look for them in Event Viewer or using KQL queries in Azure.  Specifically, we are going to provide full permissions for the SQL service account to the Windows registry hive.  The Windows registry is basically an app on the computer where you can make a lot of really granular modifications that affect the way the OS runs.  The reason why it's a good idea to make these changes is so you can actually view and understand/get a feel for what these SQL attack-associated logs are, and where to find them (analyzing logs is a crucial part of many cybersecurity roles).  Without making these changes to the registry, we wouldn't be able to view the SQL associated logs in the Event Viewer.
+
+1.  Let's start by navigating to the search bar on the task bar within our honeynet VM, typing "Registry Editor", and hitting enter.
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/0a35f763-2374-4287-8246-d8e505f58494)
 
-Once we are in Registry Editor, we are going to follow this path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Security
+2.  Once we are in Registry Editor, we are going to follow this path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Security
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/bc762973-2ceb-406e-af6c-e2a5ecc2265e)
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/fd94bf11-9c58-46ad-a15f-16b3b0add25d)
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/63af608c-85c7-409a-bacb-e8e5247188ab)
 
-Then, under the "Security" tree, you'll see another "Security" tree.  Right click it, and select "Permissions".  Here's an image so you don't get confused between the two "Security" trees:
+3.  Then, under the "Security" tree, you'll see another "Security" tree.  Right click it, and select "Permissions".  Here's an image so you don't get confused between the two "Security" trees:
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/33017f53-8aed-43e4-8ff8-71cbed000b69)
 
-Next, click "Add", and in the "Enter the object names to select" box, type "NETWORK SERVICE".  To the right of the box you just entered "NETWORK SERVICE" into, click the "Check Names" button.  Then, click "OK".  In the window that appears, select the "Full Control" box, and click "Apply" and then "OK".
+4.  Next, click "Add", and in the "Enter the object names to select" box, type "NETWORK SERVICE".  To the right of the box you just entered "NETWORK SERVICE" into, click the "Check Names" button.  Then, click "OK".  In the window that appears, select the "Full Control" box, and click "Apply" and then "OK".
 
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/cffdfa7e-64fc-4816-94a8-dcafff831e3f)
 ![image](https://github.com/Hank-Rutherford-Hill/How-To-Create-a-Basic-Honeynet-In-Azure/assets/143474898/b2aa215c-40cd-499c-b6c1-b86f4095cd91)
 
-We need to do one more thing to allow the SQL server logs to be collected and viewed in Event Viewer.  Open up the Command Prompt (task bar search bar > type "cmd" > right click "Command Prompt" > Run as Administrator), and copy this :
+5.  We need to do one more thing to allow the SQL server logs to be collected and viewed in Event Viewer.  Open up the Command Prompt (task bar search bar > type "cmd" > right click "Command Prompt" > Run as Administrator), and copy this :
 
 ```auditpol /set /subcategory:"application generated" /success:enable /failure:enable```
 
@@ -164,7 +168,7 @@ and paste it into the Command Prompt, and hit enter.  Remember, this is being ex
 
 Congratulations, now your VMs OS is configured to collect logs concerning MS SQL Server, allowing them to be examined in Event Viewer or within Azure!
 
-# Verifying SQL Server Log Generation
+## Verifying SQL Server Log Generation
 
 Before we skate off into the sunset thinking we've set up everything we need to in our Windows honeynet VM, we should do our due dilligence and verify that we can indeed see that these logs are being generated.  To do this, lets open up SSMS (SQL Server Management Studio), and then log in to our SQL Server.
 
@@ -213,7 +217,7 @@ In conjunction with the Windows Registry changes we made a few steps prior, this
 
 If after failing several login attempts, you do not see any Event ID 18456 for failed logins, or any Event ID 18453 for successful logins, go back and repeat the steps in this section.  If you repeat the steps in this section, and still do not see the appropriate Event IDs in Event Viewer, you may have made a mistake when you made changes to the Windows Registry, and you would have to go back and repeat that section, followed by this section.  However, it's not totally necessary if all you want to do is create a super basic honeynet.  If you think you may want to follow along with any future tutorials I may release here on GitHub, it would behoove you to get this situation worked out.
 
-# Creating A Linux VM
+# Creating the Linux Honeynet VM
 
 We now need to create a Linux honeynet VM to add to our honeynet and NSG.  It's essentially the same procedure as when we created our Windows honeynet VM, but I will run through it anyway since there are a few important things I want to make sure are not overlooked.
 
@@ -280,7 +284,7 @@ If you see that your ping is getting a reply, you're good!  Defenses are down on
 
 ## SSH into the Linux Honeynet VM
 
-Keep our command prompt open because now we are going to SSH into our Linux honeynet VM!  Linux machines don't always have a GUI (Graphical User Interface) like Windows machines do, so we are going to have to use the command prompt or Powershell to remotely login to the Linux honeynet VM.
+Keep our command prompt open because now we are going to SSH into our Linux honeynet VM!  Linux machines don't always have a GUI (Graphical User Interface) like Windows machines do, so we are going to have to use the command prompt or PowerShell to remotely login to the Linux honeynet VM.
 
 1.  First, make sure we have the public IP address of the Linux honeynet VM copied.  You should know how to get the public IP address for this machine by now!
 
